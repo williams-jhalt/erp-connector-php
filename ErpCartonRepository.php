@@ -11,9 +11,7 @@ class ErpCartonRepository extends AbstractErpRepository {
         $this->productService = new ErpProductRepository($erp);
     }
     
-    public function getCartons($manifestId) {
-        
-        list($order,$seq) = explode("-", $manifestId);
+    public function getCartons($order, $seq) {
 
         $query = "FOR EACH ed_ucc128ln NO-LOCK "
                 . "WHERE ed_ucc128ln.company_oe = '" . $this->erp->getCompany() . "' "
