@@ -60,7 +60,7 @@ class ErpCartonRepository extends AbstractErpRepository {
             $cartonItem->setName($product->getName());
             $cartonItem->setPrice($product->getPrice());
             $cartonItem->setQuantityShipped($erpItem->ed_ucc128pk_qty_shp);
-            $cartonItem->setStockQuantity($product->getStockQuantity());
+            $cartonItem->setOnHandQuantity($product->getOnHandQuantity());
             
             $result[] = $cartonItem;
         }
