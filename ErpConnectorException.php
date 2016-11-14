@@ -2,6 +2,8 @@
 
 namespace Williams\Erp;
 
-class ErpConnectorException extends \Exception {
+use Exception;
+
+class ErpConnectorException extends Exception {
     
 }

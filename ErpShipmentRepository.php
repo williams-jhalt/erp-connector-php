@@ -2,6 +2,8 @@
 
 namespace Williams\Erp;
 
+use DateTime;
+
 class ErpShipmentRepository extends AbstractErpRepository  {    
     
     public function getShipment($manifestId) {
