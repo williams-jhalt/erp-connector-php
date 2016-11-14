@@ -27,7 +27,7 @@ class ErpCartonRepository extends AbstractErpRepository {
             if (array_search($erpItem->ed_ucc128ln_ucc, $uccs) !== false) {
                 continue;
             }
-            $carton = new Carton();
+            $carton = new ErpCarton();
             $carton->setCartonNumber($erpItem->ed_ucc128ln_carton);
             $carton->setOrderNumber($erpItem->ed_ucc128ln_order);
             $carton->setRecordSequence($erpItem->ed_ucc128ln_rec_seq);
@@ -53,7 +53,7 @@ class ErpCartonRepository extends AbstractErpRepository {
         foreach ($response as $erpItem) {
             $product = $this->productService->getByItemNumber($erpItem->ed_ucc128pk_item);
             
-            $cartonItem = new CartonItem();
+            $cartonItem = new ErpCartonItem();
             $cartonItem->setBinLocation($product->getBinLocation());
             $cartonItem->setCommittedQuantity($product->getCommittedQuantity());
             $cartonItem->setItemNumber($product->getItemNumber());

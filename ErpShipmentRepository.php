@@ -16,7 +16,7 @@ class ErpShipmentRepository extends AbstractErpRepository  {
 
         foreach ($response as $item) {
             
-            $salesOrder = new SalesOrder();
+            $salesOrder = new ErpShipment();
             $salesOrder->setCustomerNumber($item->oe_head_customer);
             $salesOrder->setManifestId($item->oe_head_Manifest_id);
             $salesOrder->setOrderDate(new DateTime($item->oe_head_ord_date));

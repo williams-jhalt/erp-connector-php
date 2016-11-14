@@ -21,12 +21,12 @@ class ErpProductRepository extends AbstractErpRepository {
 
         $item = $response[0];
 
-        $product = new Product();
+        $product = new ErpProduct();
         $product->setItemNumber($item->item_item);
         $product->setName(join(" ", $item->item_descr));
         $product->setBinLocation($item->wa_item_ship_location);
         $product->setPrice($item->wa_item_list_price);
-        $product->setStockQuantity($item->wa_item_qty_oh);
+        $product->setOnHandQuantity($item->wa_item_qty_oh);
         $product->setCommittedQuantity($item->wa_item_qty_cmtd);
 
         return $product;
@@ -47,12 +47,12 @@ class ErpProductRepository extends AbstractErpRepository {
 
         foreach ($response as $item) {
 
-            $product = new Product();
+            $product = new ErpProduct();
             $product->setItemNumber($item->item_item);
             $product->setName(join(" ", $item->item_descr));
             $product->setBinLocation($item->wa_item_ship_location);
             $product->setPrice($item->wa_item_list_price);
-            $product->setStockQuantity($item->wa_item_qty_oh);
+            $product->setOnHandQuantity($item->wa_item_qty_oh);
             $product->setCommittedQuantity($item->wa_item_qty_cmtd);
 
             $result[] = $product;
@@ -81,12 +81,12 @@ class ErpProductRepository extends AbstractErpRepository {
 
         foreach ($response as $item) {
 
-            $product = new Product();
+            $product = new ErpProduct();
             $product->setItemNumber($item->item_item);
             $product->setName(join(" ", $item->item_descr));
             $product->setBinLocation($item->wa_item_ship_location);
             $product->setPrice($item->wa_item_list_price);
-            $product->setStockQuantity($item->wa_item_qty_oh);
+            $product->setOnHandQuantity($item->wa_item_qty_oh);
             $product->setCommittedQuantity($item->wa_item_qty_cmtd);
             
             $result[] = $product;
