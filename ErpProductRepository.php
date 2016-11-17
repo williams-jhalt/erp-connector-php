@@ -7,12 +7,13 @@ class ErpProductRepository extends AbstractErpRepository {
     public function findAll($offset = 0, $limit = 1000) {
 
         $query = "FOR EACH item NO-LOCK "
-                . "WHERE item.company_it = '" . $this->erp->getCompany() . "', "
+                . "WHERE item.company_it = '" . $this->erp->getCompany() . "' "
+                . "AND item.is_deleted = no, "
                 . "EACH wa_item NO-LOCK "
                 . "WHERE wa_item.company_it = item.company_it "
                 . "AND wa_item.item = item.item";
 
-        $response = $this->erp->read($query, "item.item,item.descr,wa_item.ship_location,wa_item.list_price,wa_item.qty_cmtd,wa_item.qty_oh");
+        $response = $this->erp->read($query, "item.item,item.descr,wa_item.ship_location,wa_item.list_price,wa_item.qty_cmtd,wa_item.qty_oh", $offset, $limit);
 
         if (empty($response)) {
             return $null;
@@ -38,12 +39,13 @@ class ErpProductRepository extends AbstractErpRepository {
 
         $query = "FOR EACH item NO-LOCK "
                 . "WHERE item.company_it = '" . $this->erp->getCompany() . "' "
-                . "AND item.item = '" . $itemNumber . "', "
+                . "AND item.item = '" . $itemNumber . "' "
+                . "AND item.is_deleted = no, "
                 . "EACH wa_item NO-LOCK WHERE "
                 . "wa_item.company_it = item.company_it AND "
                 . "wa_item.item = item.item";
 
-        $response = $this->erp->read($query, "item.item,item.descr,wa_item.ship_location,wa_item.list_price,wa_item.qty_cmtd,wa_item.qty_oh");
+        $response = $this->erp->read($query, "item.item,item.descr,wa_item.ship_location,wa_item.list_price,wa_item.qty_cmtd,wa_item.qty_oh", 0, 1);
 
         if (empty($response)) {
             return null;
@@ -66,6 +68,7 @@ class ErpProductRepository extends AbstractErpRepository {
 
         $query = "FOR EACH item NO-LOCK "
                 . "WHERE item.company_it = '" . $this->erp->getCompany() . "' "
+                . "AND item.is_deleted = no "
                 . "AND item.sy_lookup MATCHES '*" . $searchTerms . "*', "
                 . "EACH wa_item NO-LOCK WHERE "
                 . "wa_item.company_it = item.company_it AND "
