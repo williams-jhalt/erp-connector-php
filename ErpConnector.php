@@ -54,7 +54,7 @@ class ErpConnector {
 
         if (isset($response->_errors)) {
             $this->_cache->delete('erp_token');
-            throw new ErpOneException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
+            throw new ErpConnectorException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
         }
 
         $this->_grantToken = $response->grant_token;
@@ -141,7 +141,7 @@ class ErpConnector {
         }
 
         if (isset($response->_errors)) {
-            throw new ErpOneException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
+            throw new ErpConnectorException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
         }
 
         return $response;
@@ -207,7 +207,7 @@ class ErpConnector {
         }
 
         if (isset($response->_errors)) {
-            throw new ErpOneException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
+            throw new ErpConnectorException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
         }
 
         return $response;
@@ -263,7 +263,7 @@ class ErpConnector {
         }
 
         if (isset($response->_errors)) {
-            throw new ErpOneException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
+            throw new ErpConnectorException($response->_errors[0]->_errorMsg, $response->_errors[0]->_errorNum); // find out the structure of ERP-ONE's errors
         }
 
         return $response;
